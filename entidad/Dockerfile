@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN a2enmod rewrite
 
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # Configurar DocumentRoot a public/
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
